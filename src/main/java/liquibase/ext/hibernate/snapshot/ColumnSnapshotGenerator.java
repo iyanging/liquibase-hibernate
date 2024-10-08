@@ -2,6 +2,7 @@ package liquibase.ext.hibernate.snapshot;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.Locale;
 import java.util.Properties;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -197,6 +198,9 @@ public class ColumnSnapshotGenerator extends HibernateSnapshotGenerator {
         if (extra != null) {
             if (extra.equalsIgnoreCase("char")) {
                 dataType.setColumnSizeUnit(DataType.ColumnSizeUnit.CHAR);
+            } else if (extra.toUpperCase(Locale.US).endsWith("TIMEZONE")
+                    || extra.toUpperCase(Locale.US).endsWith("TIME ZONE")) {
+                dataType = new DataType(hibernateType.toUpperCase(Locale.US));
             }
         }
 
