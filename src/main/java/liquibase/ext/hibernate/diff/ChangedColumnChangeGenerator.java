@@ -46,7 +46,7 @@ public class ChangedColumnChangeGenerator extends liquibase.diff.output.changelo
         if (difference != null) {
             for (Difference d : differences.getDifferences()) {
                 if (!(d.getReferenceValue() instanceof DataType)) {
-                    differences.removeDifference(d.getField());
+                    // differences.removeDifference(d.getField());
                     continue;
                 }
                 Integer originalSize = ((DataType) d.getReferenceValue()).getColumnSize();
